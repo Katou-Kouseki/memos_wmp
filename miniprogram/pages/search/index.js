@@ -27,7 +27,7 @@ Page({
     app.api.getTags(this.data.url)
       .then(res => {
         that.setData({
-          tags: res.data
+          tags: res
         })
         that.getSuggestionTags()
       })
@@ -100,7 +100,7 @@ Page({
     app.api.getTagsSuggestionList(this.data.url)
       .then(res => {
         that.setData({
-          tagsSuggestionList: res.data
+          tagsSuggestionList: res
         })
         that.tagsDeleteDouble(that.data.tags, that.data.tagsSuggestionList)
       })
@@ -221,7 +221,7 @@ Page({
     app.api.changeMemoPinned(this.data.url, memoid, data)
       .then(res => {
         // console.log(res)
-        if (res.data) {
+        if (res) {
           wx.vibrateShort({
         type: 'light'
       })
@@ -273,7 +273,7 @@ Page({
         visibility: (visibility == 'PRIVATE' ? 'PUBLIC' : 'PRIVATE')
       })
       .then(res => {
-        if (res.data) {
+        if (res) {
           for (let i = 0; i < memos.length; i++) {
             if (memos[i].id == id) {
               memos[i].visibility = (memos[i].visibility == 'PRIVATE' ? 'PUBLIC' : 'PRIVATE')
@@ -316,8 +316,8 @@ Page({
     app.api.editMemo(url, id, data)
       .then(res => {
         // console.log(res)
-        if (res.data) {
-          console.log(res.data)
+        if (res) {
+          console.log(res)
           let showMemos = that.data.showMemos
           let memos = that.data.memos
           memos.map((memo, index) => {

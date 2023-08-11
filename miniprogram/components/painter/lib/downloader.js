@@ -24,8 +24,8 @@ export default class Dowloader {
     wx.getStorage({
       key: SAVED_FILES_KEY,
       success: function (res) {
-        if (res.data) {
-          savedFiles = res.data;
+        if (res) {
+          savedFiles = res;
         }
       },
     });

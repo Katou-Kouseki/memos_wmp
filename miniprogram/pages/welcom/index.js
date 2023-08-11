@@ -51,7 +51,7 @@ Page({
       console.log(res)
       // wx.setStorageSync('cookie', res.cookies)
       this.setData({
-        webInfo: res.data.data
+        webInfo: res.data
       })
     }).catch((err) => {
       this.setData({

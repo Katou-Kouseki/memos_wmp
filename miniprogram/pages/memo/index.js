@@ -245,9 +245,9 @@ Page({
     var that = this
     app.api.editMemo(url, id, data)
       .then(res => {
-        if (res.data) {
+        if (res) {
           that.setData({
-            ['memo.rowStatus']: res.data.rowStatus
+            ['memo.rowStatus']: res.rowStatus
           })
           wx.vibrateShort({
             type: 'light'
@@ -327,8 +327,8 @@ Page({
     // })
     app.api.getMemo(url, id)
       .then(res => {
-        if (res.data) {
-          let memo = res.data
+        if (res) {
+          let memo = res
           memo.formatContent = formatMemoContent(memo.content)
           memo.time = app.calTime(memo.createdTs)
           memo = app.memosRescourse(memo)
@@ -393,7 +393,7 @@ Page({
         visibility: (visibility == 'PRIVATE' ? 'PUBLIC' : 'PRIVATE')
       })
       .then(res => {
-        if (res.data) {
+        if (res) {
           that.setData({
             ['memo.visibility']: visibility == 'PRIVATE' ? 'PUBLIC' : 'PRIVATE'
           })
@@ -420,9 +420,9 @@ Page({
   getUserInfo() {
     app.api.getUserInfo(this.data.url, this.data.memo.creatorId)
       .then(res => {
-        if (res.data) {
+        if (res) {
           this.setData({
-            author: res.data
+            author: res
           })
         }
       })

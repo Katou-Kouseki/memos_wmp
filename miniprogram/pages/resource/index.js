@@ -115,7 +115,7 @@ Page({
             type: 'light',
           })
           if (res.statusCode == 200) {
-            let newFile = JSON.parse(res.data).data
+            let newFile = JSON.parse(res).data
             newFile.time = app.fomaDay(newFile.createdTs * 1000)
             newFile.sizeFomate = app.formatFileSize(newFile.size)
             resources.unshift(newFile)
@@ -156,7 +156,7 @@ Page({
       title: this.data.language.common.loading,
     })
     app.api.getResource(this.data.url, this.data.limit, this.data.resources.length).then(res => {
-      let newResources = res.data
+      let newResources = res
       newResources.forEach(function (item) {
         item.time = app.fomaDay(item.createdTs * 1000);
         item.sizeFomate = app.formatFileSize(item.size)
