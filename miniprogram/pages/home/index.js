@@ -342,7 +342,7 @@ Page({
     app.api.changeMemoPinned(this.data.url, memoid, data)
       .then(res => {
         console.log(res)
-        if (res.data) {
+        if (res) {
           wx.vibrateShort({
             type: 'light'
           })
@@ -420,7 +420,7 @@ Page({
     }
     app.api.getMemos(wx.getStorageSync('url'), this.data.limit, offset, rowStatus)
       .then(result => {
-        if (!result.data) {} else if (result.data.length == 0) {
+        if (!result) {} else if (result.length == 0) {
           if (that.data.memos.length == 0) {
             that.setData({
               memos: [],
@@ -439,7 +439,7 @@ Page({
             title: that.data.language.home.thatIsAll
           })
         } else {
-          var memos = result.data
+          var memos = result
           for (let i = 0; i < memos.length; i++) {
             const ts = memos[i].displayTs
             var time = app.calTime(ts)
@@ -604,7 +604,7 @@ Page({
     app.api.getStats(wx.getStorageSync('url'), id)
       .then(result => {
         this.setData({
-          stats: result.data
+          stats: result
         })
         that.setHeatMap()
       })

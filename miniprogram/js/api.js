@@ -46,7 +46,7 @@ export const getMemos = (url, limit, offset, rowStatus) => {
       url: `${url}/api/v1/memo`,
       data,
       success(res) {
-        resolve(res)
+        resolve(res.data)
       },
       fail(err) {
         reject(err)
@@ -66,7 +66,7 @@ export const getResource = (url, limit, offset) => {
       url: `${url}/api/v1/resource`,
       data,
       success(res) {
-        resolve(res)
+        resolve(res.data)
       },
       fail(err) {
         reject(err)
@@ -81,7 +81,7 @@ export const deleteResource = (url, id) => {
       url: `${url}/api/v1/resource/${id}?openId=${wx.getStorageSync('openId')}`,
       method: "DELETE",
       success(res) {
-        resolve(res)
+        resolve(res.data)
       },
       fail(err) {
         wx.vibrateLong()
@@ -101,7 +101,7 @@ export const deleteMemoResource = (url, memoId, resourceId) => {
       url: `${url}/api/v1/memo/${memoId}/resource/${resourceId}?openId=${wx.getStorageSync('openId')}`,
       method: "DELETE",
       success(res) {
-        resolve(res)
+        resolve(res.data)
       },
       fail(err) {
         wx.vibrateLong()
@@ -124,7 +124,7 @@ export const createResource = (url, file) => {
         file
       },
       success(res) {
-        resolve(res)
+        resolve(res.data)
       },
       fail(err) {
         reject(err)
@@ -142,7 +142,7 @@ export const getMemo = (url, id) => {
       },
       success(res) {
         console.log(res)
-        resolve(res)
+        resolve(res.data)
       },
       fail(err) {
         reject(err)
@@ -204,7 +204,7 @@ export const getStats = (url, creatorId) => {
         openId: wx.getStorageSync('openId')
       },
       success(res) {
-        resolve(res)
+        resolve(res.data)
       },
       fail(err) {
         wx.vibrateLong()
@@ -228,7 +228,7 @@ export const sendMemo = (url, content, resourceIdList) => {
         resourceIdList
       },
       success(res) {
-        resolve(res)
+        resolve(res.data)
       },
       fail(err) {
         wx.vibrateLong()
@@ -249,7 +249,7 @@ export const signUp = (url, data) => {
       method: "POST",
       data: data,
       success(res) {
-        resolve(res)
+        resolve(res.data)
       },
       fail(err) {
         wx.vibrateLong()
@@ -269,7 +269,7 @@ export const deleteMemo = (url, memoId) => {
       url: `${url}/api/v1/memo/${memoId}?openId=${wx.getStorageSync('openId')}`,
       method: "DELETE",
       success(res) {
-        resolve(res)
+        resolve(res.data)
       },
       fail(err) {
         wx.vibrateLong()
@@ -290,7 +290,7 @@ export const editMemo = (url, memoId, data) => {
       method: "PATCH",
       data,
       success(res) {
-        resolve(res)
+        resolve(res.data)
       },
       fail(err) {
         wx.vibrateLong()
@@ -313,7 +313,7 @@ export const changeUserSetting = (url, data) => {
         ...data
       },
       success(res) {
-        resolve(res)
+        resolve(res.data)
       },
       fail(err) {
         wx.vibrateLong()
@@ -336,7 +336,8 @@ export const changeMemoPinned = (url, memoId, data) => {
         ...data
       },
       success(res) {
-        resolve(res)
+        console.log(res)
+        resolve(res.data)
       },
       fail(err) {
         wx.vibrateLong()
@@ -357,7 +358,7 @@ export const signIn = (url, data) => {
       method: "POST",
       data: data,
       success(res) {
-        resolve(res)
+        resolve(res.data)
       },
       fail(err) {
         wx.vibrateLong()
@@ -374,12 +375,12 @@ export const signIn = (url, data) => {
 export const getTags = (url) => {
   return new Promise((resolve, reject) => {
     wx.request({
-      url: `${url}/api/v1/tag`,
+      url: `${url}/api/v1/tag?`,
       data: {
         openId: wx.getStorageSync('openId')
       },
       success(res) {
-        resolve(res)
+        resolve(res.data)
       },
       fail(err) {
         wx.vibrateLong()
@@ -401,7 +402,7 @@ export const getTagsSuggestionList = (url) => {
         openId: wx.getStorageSync('openId')
       },
       success(res) {
-        resolve(res)
+        resolve(res.data)
       },
       fail(err) {
         wx.vibrateLong()
@@ -424,7 +425,7 @@ export const upsertTag = (url, TagName) => {
         name: TagName
       },
       success(res) {
-        resolve(res)
+        resolve(res.data)
       },
       fail(err) {
         wx.vibrateLong()
@@ -447,7 +448,7 @@ export const deleteTag = (url, TagName) => {
         name: TagName
       },
       success(res) {
-        resolve(res)
+        resolve(res.data)
       },
       fail(err) {
         wx.vibrateLong()
@@ -485,7 +486,7 @@ export const getExploreMemos = (url, offset, limit) => {
     wx.request({
       url: `${url}/api/v1/memo/all?offset=${offset}&limit=${limit}`,
       success(res) {
-        resolve(res)
+        resolve(res.data)
       },
       fail(err) {
         wx.vibrateLong()

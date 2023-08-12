@@ -104,7 +104,7 @@ Page({
       })
     } else {
       wx.uploadFile({
-        url: `${that.data.url}/api/resource/blob?openId=${wx.getStorageSync('openId')}`,
+        url: `${that.data.url}/api/v1/resource/blob?openId=${wx.getStorageSync('openId')}`,
         filePath: file.path,
         name: 'file',
         timeout: 180 * 1000,
@@ -115,7 +115,7 @@ Page({
             type: 'light',
           })
           if (res.statusCode == 200) {
-            let newFile = JSON.parse(res).data
+            let newFile = JSON.parse(res.data)
             newFile.time = app.fomaDay(newFile.createdTs * 1000)
             newFile.sizeFomate = app.formatFileSize(newFile.size)
             resources.unshift(newFile)

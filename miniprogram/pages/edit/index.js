@@ -39,6 +39,7 @@ Page({
     //页面监听器
     if (eventChannel.listener) {
       eventChannel.once('acceptDataFromOpenerPage', function (data) {
+        console.log(data)
         let formatMemo = formatMemoContent(data.memo)
         that.setData({
           ...data,
@@ -107,6 +108,7 @@ Page({
   none() {},
 
   inputUserTag(e) {
+    console.log(e.currentTarget.dataset.tag)
     let tag = e.currentTarget.dataset.tag
     this.setData({
       memoFocus: false

@@ -47,14 +47,14 @@ Page({
       app.api.getMemos(wx.getStorageSync('url'), '', '')
         .then(result => {
           // console.log(result)
-          if (!result.data) {
+          if (!result) {
             wx.vibrateLong()
             wx.showToast({
               icon: 'error',
               title: that.data.language.common.wrong,
             })
           } else {
-            var memos = result.data
+            var memos = result
             for (let i = 0; i < memos.length; i++) {
               let ts = memos[i].createdTs
               let time = app.calTime(ts)

@@ -134,7 +134,7 @@ Page({
       app.api.signUp(this.data.url, data)
         .then(res => {
           console.log(res)
-          if (res.data) {
+          if (res.openId) {
             //创建成功
             wx.vibrateShort({
               type: 'light'
@@ -142,7 +142,7 @@ Page({
             wx.showLoading({
               title: that.data.language.welcom.signUpSuc,
             })
-            var openId = res.data.openId
+            var openId = res.openId
             wx.setStorage({
               key: "openId",
               data: openId,
@@ -237,8 +237,8 @@ Page({
           "password": that.data.password,
         })
         .then(res => {
-          if (res.data) {
-            console.log(res.data.openId)
+          if (res) {
+            console.log(res.openId)
             wx.vibrateShort({
               type: 'light'
             })
@@ -247,7 +247,7 @@ Page({
             })
             wx.setStorage({
               key: "openId",
-              data: res.data.openId,
+              data: res.openId,
               // encrypt: true,
               success(res) {
                 wx.setStorage({
